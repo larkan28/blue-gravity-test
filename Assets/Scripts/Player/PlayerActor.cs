@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerActor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private PlayerInteraction playerInteraction;
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private PlayerInventory playerInventory;
+
+    private void Awake()
     {
-        
+        playerInteraction.Init();
+        playerController.Init();
+        playerInventory.Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        playerInteraction.Think();
+        playerController.Think();
+        playerInventory.Think();
+    }
+
+    private void FixedUpdate()
+    {
+        playerController.ThinkFixed();
     }
 }
