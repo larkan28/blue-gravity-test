@@ -15,5 +15,8 @@ MonoBehaviour:
   Name: Brown Hood
   Description: It's a hood
   Icon: {fileID: 21300000, guid: 468244f274f38f64b85773c7888444b6, type: 3}
-  Type: 16
-  Sprite: {fileID: 21300000, guid: 468244f274f38f64b85773c7888444b6, type: 3}
+  Price: 5
+  IsStackable: 1
+  Clothes:
+  - Type: 16
+    Sprite: {fileID: 21300000, guid: 468244f274f38f64b85773c7888444b6, type: 3}
