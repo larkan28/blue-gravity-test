@@ -36,6 +36,12 @@ public class Inventory : MonoBehaviour
 
     [HideInInspector] public UI_Inventory InventoryUI;
 
+    private void Awake()
+    {
+        foreach (Slot slot in Slots)
+            slot.Parent = this;
+    }
+
     public void Add(ItemData data, int quantity = 1)
     {
         if (data == null)
@@ -84,9 +90,20 @@ public class Inventory : MonoBehaviour
         gameEvent.InventoryChanged(this);
     }
 
-    public void Move(Inventory toInventory, Item item)
+    public void Move(Slot fromSlot, Slot toSlot)
     {
+        if (fromSlot == null || toSlot == null || fromSlot == toSlot)
+            return;
 
+        Inventory toInventory = toSlot.Parent;
+
+        if (toInventory == null)
+            return;
+
+        (toSlot.Item, fromSlot.Item) = (fromSlot.Item, toSlot.Item);
+
+        gameEvent.InventoryChanged(this);
+        gameEvent.InventoryChanged(toInventory);
     }
 
     public Slot Find(Item item)
@@ -108,5 +125,10 @@ public class Inventory : MonoBehaviour
         }
 
         return null;
+    }
+
+    public Slot FindSlot(Slot.Type type)
+    {
+        return Array.Find(Slots, x => x.TypeId == type);
     }
 }
