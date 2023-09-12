@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0da2eeea084ec4098cad6e1580a001, type: 3}
+  m_Name: ItemOutfit_Gloves4
+  m_EditorClassIdentifier: 
+  Name: Gloves 4
+  Description: Very cool gloves
+  Icon: {fileID: 21300000, guid: f126a3e402a833446b78aa64b8a7ebce, type: 3}
+  Price: 5
+  IsStackable: 0
+  Clothes:
+  - Type: 0
+    Sprite: {fileID: 21300000, guid: fde91a030e5382647a20ec036c8d578f, type: 3}
+  - Type: 1
+    Sprite: {fileID: 21300000, guid: c764210032bc5df46a28cb6e1f3ad991, type: 3}
+  - Type: 2
+    Sprite: {fileID: 21300000, guid: 82356071de2f4a942b6c0eb7db5dbc94, type: 3}
+  - Type: 3
+    Sprite: {fileID: 21300000, guid: c8246436787abd045a65c5d246ef4344, type: 3}
+  SlotId: 4
