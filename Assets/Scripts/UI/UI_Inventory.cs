@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class UI_Inventory : MonoBehaviour
 {
+    [SerializeField] private Inventory.Type type;
     [SerializeField] private GameEvent gameEvent;
     [SerializeField] private Transform itemsContainer;
+    [SerializeField] private GameObject invetoryRoot;
     [SerializeField] private UI_InventorySlot slotPrefab;
     [SerializeField] private UI_InventoryTooltip tooltipPrefab;
+    [SerializeField] private bool showEmptySlots;
 
-    public bool IsOpen => itemsContainer.gameObject.activeSelf;
+    public bool IsOpen => invetoryRoot.activeSelf;
 
     private Inventory m_inventory;
-    private UI_InventorySlot[] m_itemsUI;
+    private UI_InventorySlot[] m_slots;
 
     public static UI_InventoryTooltip Tooltip;
 
@@ -36,18 +39,22 @@ public class UI_Inventory : MonoBehaviour
 
     private void OnInventoryChanged(Inventory inventory)
     {
-        Draw(inventory);
+        if (type == inventory.TypeId)
+            Draw(inventory);
     }
 
     private void OnInventoryToggle(Inventory inventory)
     {
-        Show(!IsOpen);
-        Draw(inventory);
+        if (type == inventory.TypeId)
+        {
+            Show(!IsOpen);
+            Draw(inventory);
+        }
     }
 
     private void Show(bool value)
     {
-        itemsContainer.gameObject.SetActive(value);
+        invetoryRoot.SetActive(value);
     }
 
     private void Draw(Inventory inventory)
@@ -55,42 +62,51 @@ public class UI_Inventory : MonoBehaviour
         if (!IsOpen)
             return;
 
-        if (inventory != m_inventory)
+        if (HasToRecreateSlots(inventory))
         {
-            if (m_itemsUI != null)
-                Clean();
+            if (m_slots != null)
+                Clear();
 
-            m_itemsUI = new UI_InventorySlot[inventory.Capacity];
+            int maxSize = showEmptySlots ? inventory.Capacity : inventory.Count;
+            m_slots = new UI_InventorySlot[maxSize];
 
-            for (int i = 0; i < m_itemsUI.Length; i++)
+            for (int i = 0; i < m_slots.Length; i++)
             {
-                m_itemsUI[i] = Instantiate(slotPrefab, itemsContainer);
+                m_slots[i] = Instantiate(slotPrefab, itemsContainer);
 
-                if (m_itemsUI[i] != null)
-                    m_itemsUI[i].Manager = this;
+                if (m_slots[i] != null)
+                    m_slots[i].Init(this);
             }
         }
 
-        for (int i = 0; i < m_itemsUI.Length; i++)
+        for (int i = 0; i < m_slots.Length; i++)
         {
             if (i < inventory.Count)
-                m_itemsUI[i].Show(inventory.Items[i]);
+                m_slots[i].Show(inventory.Items[i]);
             else
-                m_itemsUI[i].Show(null);
+                m_slots[i].Show(null);
         }
 
         m_inventory = inventory;
     }
 
-    private void Clean()
+    private void Clear()
     {
-        foreach (var item in m_itemsUI)
+        foreach (var slot in m_slots)
         {
-            if (item != null)
-                Destroy(item.gameObject);
+            if (slot != null)
+                Destroy(slot.gameObject);
         }
 
-        m_itemsUI = null;
+        m_slots = null;
+    }
+
+    private bool HasToRecreateSlots(Inventory inventory)
+    {
+        if (!showEmptySlots && m_slots != null && m_slots.Length != inventory.Count)
+            return true;
+
+        return inventory != m_inventory || m_slots == null;
     }
 
     public void SelectItem(UI_InventorySlot itemUI, GameEvent.ItemAction action)

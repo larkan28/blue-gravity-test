@@ -8,23 +8,32 @@ public class UI_InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] private Image imageIcon;
     [SerializeField] private GameObject quantityRoot;
     [SerializeField] private TextMeshProUGUI textQuantity;
+    [SerializeField] private bool alwaysShowQuantity;
 
-    [HideInInspector] public UI_Inventory Manager;
-    [HideInInspector] public Item Item;
+    public Item Item => m_item;
 
-    public void Show(Item item)
+    private UI_Inventory m_manager;
+    private Item m_item;
+
+    public virtual void Init(UI_Inventory manager)
+    {
+        m_manager = manager;
+        m_item = null;
+    }
+
+    public virtual void Show(Item item)
     {
         imageIcon.sprite = item?.Data.Icon;
-        Item = item;
+        m_item = item;
 
         ShowQuantity();
     }
 
     private void ShowQuantity()
     {
-        if (Item != null && Item.Quantity > 1)
+        if (m_item != null && (m_item.Quantity > 1 || alwaysShowQuantity))
         {
-            textQuantity.text = Item.Quantity.ToString();
+            textQuantity.text = m_item.Quantity.ToString();
             quantityRoot.SetActive(true);
         }
         else
@@ -33,7 +42,7 @@ public class UI_InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UI_Inventory.Tooltip.Show(Item, transform.position);
+        UI_Inventory.Tooltip.Show(m_item, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -46,10 +55,10 @@ public class UI_InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                Manager.SelectItem(this, GameEvent.ItemAction.Equip);
+                m_manager.SelectItem(this, GameEvent.ItemAction.Equip);
                 break;
             case PointerEventData.InputButton.Right:
-                Manager.SelectItem(this, GameEvent.ItemAction.Remove);
+                m_manager.SelectItem(this, GameEvent.ItemAction.Remove);
                 break;
         }
     }
