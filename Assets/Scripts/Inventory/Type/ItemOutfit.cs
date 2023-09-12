@@ -4,6 +4,5 @@ using UnityEngine;
 public class ItemOutfit : ItemData
 {
     [Header("Outfit")]
-    public Bone2D.Type Type;
-    public Sprite Sprite;
+    public SkeletonOutfit[] Clothes;
 }

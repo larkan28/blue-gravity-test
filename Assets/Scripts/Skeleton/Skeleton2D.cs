@@ -11,12 +11,18 @@ public class Skeleton2D : MonoBehaviour
             bone.Init();
     }
 
-    public void SetOutfit(Bone2D.Type boneType, Sprite sprite)
+    public void SetOutfit(SkeletonOutfit[] outfits)
     {
-        Bone2D bone = Array.Find(bones, x => x.Id == boneType);
+        foreach (var outfit in outfits)
+            SetOutfit(outfit);
+    }
+
+    public void SetOutfit(SkeletonOutfit outfit)
+    {
+        Bone2D bone = Array.Find(bones, x => x.Id == outfit.Type);
 
         if (bone != null)
-            bone.Sprite = sprite;
+            bone.Sprite = outfit.Sprite;
     }
 }
 
@@ -58,4 +64,11 @@ public class Bone2D
     {
         m_spriteRenderer = Origin.GetComponent<SpriteRenderer>();
     }
+}
+
+[System.Serializable]
+public struct SkeletonOutfit
+{
+    public Bone2D.Type Type;
+    public Sprite Sprite;
 }

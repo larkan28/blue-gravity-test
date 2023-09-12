@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private GameEvent gameEvent;
-    [SerializeField] private ItemData[] items;
 
     private Inventory m_inventory;
     private Skeleton2D m_skeleton2D;
@@ -28,12 +27,6 @@ public class PlayerInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
             ToggleInventory();
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            foreach (var item in items)
-                m_inventory.Add(item);
-        }
     }
 
     private void ToggleInventory()
@@ -57,6 +50,6 @@ public class PlayerInventory : MonoBehaviour
     private void EquipOutfit(Item item)
     {
         if (item != null && item.Data is ItemOutfit itemOutfit)
-            m_skeleton2D.SetOutfit(itemOutfit.Type, itemOutfit.Sprite);
+            m_skeleton2D.SetOutfit(itemOutfit.Clothes);
     }
 }
