@@ -26,5 +26,8 @@ public class GameEvent : ScriptableObject
 
     public event Action<float> OnMoneyChanged;
     public void MoneyChanged(float money) { OnMoneyChanged?.Invoke(money); }
+
+    public event Action<string> OnSendMessage;
+    public void SendMessage(string text) { OnSendMessage?.Invoke(text); }
     #endregion
 }
