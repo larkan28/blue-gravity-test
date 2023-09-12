@@ -25,6 +25,6 @@ public class InteractableShop : Interactable
         float distance = Vector2.Distance(actor.position, transform.position);
 
         if (distance <= minInteractDistance)
-            gameEvent.InventoryToggle(m_inventory);
+            gameEvent.InventoryShow(m_inventory, true);
     }
 }
