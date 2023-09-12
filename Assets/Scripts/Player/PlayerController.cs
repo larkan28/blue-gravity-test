@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private Animator m_animator;
     private Rigidbody2D m_rigidbody2D;
 
+    private readonly static int k_animSpeed = Animator.StringToHash("Speed");
+
     internal void Init()
     {
         m_animator = GetComponent<Animator>();
@@ -21,7 +23,7 @@ public class PlayerController : MonoBehaviour
         float verAxis = Input.GetAxisRaw("Vertical");
 
         m_moveDir = new(horAxis, verAxis);
-        m_animator.SetFloat("Speed", m_moveDir.sqrMagnitude * moveSpeed);
+        m_animator.SetFloat(k_animSpeed, m_moveDir.sqrMagnitude * moveSpeed);
 
         Rotate();
     }
