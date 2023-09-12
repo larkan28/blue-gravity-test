@@ -1,3 +1,4 @@
+[System.Serializable]
 public class Item
 {
     public ItemData Data;
