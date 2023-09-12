@@ -13,6 +13,6 @@ public class UI_ShopSlot : UI_InventorySlot
     public override void Show(Item item)
     {
         base.Show(item);
-        textPrice.text = item?.Data.Price.ToString();
+        textPrice.text = item?.Data.Price.ToString("$#.##");
     }
 }
