@@ -20,13 +20,13 @@ public class UI_Inventory : MonoBehaviour
     private void OnEnable()
     {
         gameEvent.OnInventoryChanged += OnInventoryChanged;
-        gameEvent.OnInventoryToggle += OnInventoryToggle;
+        gameEvent.OnInventoryShow += OnInventoryShow;
     }
 
     private void OnDisable()
     {
         gameEvent.OnInventoryChanged -= OnInventoryChanged;
-        gameEvent.OnInventoryToggle -= OnInventoryToggle;
+        gameEvent.OnInventoryShow -= OnInventoryShow;
     }
 
     private void Awake()
@@ -43,11 +43,11 @@ public class UI_Inventory : MonoBehaviour
             Draw(inventory);
     }
 
-    private void OnInventoryToggle(Inventory inventory)
+    private void OnInventoryShow(Inventory inventory, bool show)
     {
         if (type == inventory.TypeId)
         {
-            Show(!IsOpen);
+            Show(show);
             Draw(inventory);
         }
     }
@@ -88,6 +88,7 @@ public class UI_Inventory : MonoBehaviour
         }
 
         m_inventory = inventory;
+        m_inventory.InventoryUI = this;
     }
 
     private void Clear()

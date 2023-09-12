@@ -14,8 +14,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int maxCapacity;
     [SerializeField] private GameEvent gameEvent;
 
+    [HideInInspector] public UI_Inventory InventoryUI;
+
     public int Count => Items.Count;
     public int Capacity => maxCapacity;
+    public bool IsOpen => InventoryUI != null && InventoryUI.IsOpen;
     public Type TypeId => type;
 
     public readonly List<Item> Items = new();

@@ -55,10 +55,10 @@ public class UI_InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                m_manager.SelectItem(this, GameEvent.ItemAction.Equip);
+                m_manager.SelectItem(this, GameEvent.ItemAction.SelectLeft);
                 break;
             case PointerEventData.InputButton.Right:
-                m_manager.SelectItem(this, GameEvent.ItemAction.Remove);
+                m_manager.SelectItem(this, GameEvent.ItemAction.SelectRight);
                 break;
         }
     }
