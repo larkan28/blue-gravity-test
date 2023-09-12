@@ -20,3 +20,4 @@ MonoBehaviour:
   Clothes:
   - Type: 16
     Sprite: {fileID: 21300000, guid: 20eb058aea3c3a744bb5d47a1610550a, type: 3}
+  SlotId: 1

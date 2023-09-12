@@ -275,21 +275,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slots:
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   type: 2
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
   InventoryUI: {fileID: 0}
@@ -493,21 +509,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slots:
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   - TypeId: 0
+    Parent: {fileID: 0}
   type: 0
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
   InventoryUI: {fileID: 0}
@@ -1534,12 +1566,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slots:
-  - TypeId: 0
-  - TypeId: 0
-  - TypeId: 0
-  - TypeId: 0
-  - TypeId: 0
-  - TypeId: 0
+  - TypeId: 1
+    Parent: {fileID: 0}
+  - TypeId: 2
+    Parent: {fileID: 0}
+  - TypeId: 3
+    Parent: {fileID: 0}
+  - TypeId: 4
+    Parent: {fileID: 0}
+  - TypeId: 5
+    Parent: {fileID: 0}
+  - TypeId: 6
+    Parent: {fileID: 0}
   type: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
   InventoryUI: {fileID: 0}

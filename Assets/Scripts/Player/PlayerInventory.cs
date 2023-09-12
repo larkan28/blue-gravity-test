@@ -22,13 +22,13 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnEnable()
     {
-        gameEvent.OnItemSelected += OnItemSelected;
+        gameEvent.OnSlotSelected += OnSlotSelected;
         gameEvent.OnInventoryShow += OnInventoryShow;
     }
 
     private void OnDisable()
     {
-        gameEvent.OnItemSelected -= OnItemSelected;
+        gameEvent.OnSlotSelected -= OnSlotSelected;
         gameEvent.OnInventoryShow -= OnInventoryShow;
     }
 
@@ -61,10 +61,12 @@ public class PlayerInventory : MonoBehaviour
             gameEvent.InventoryShow(m_inventoryShop, false);
     }
 
-    private void OnItemSelected(Inventory inventory, Item item, GameEvent.ItemAction action)
+    private void OnSlotSelected(Inventory inventory, Slot slot, GameEvent.ItemAction action)
     {
-        if (inventory == null || item == null)
+        if (inventory == null || slot == null)
             return;
+
+        Item item = slot.Item;
 
         switch (action)
         {
@@ -126,6 +128,9 @@ public class PlayerInventory : MonoBehaviour
 
     private void Buy(Inventory shop, Item itemToBuy)
     {
+        if (itemToBuy == null)
+            return;
+
         float price = itemToBuy.Data.Price;
 
         if (Money < price)
@@ -138,6 +143,9 @@ public class PlayerInventory : MonoBehaviour
 
     private void Sell(Inventory shop, Item itemToSell)
     {
+        if (itemToSell == null)
+            return;
+
         Money += itemToSell.Data.Price;
         shop.Add(itemToSell.Data, 1);
         inventoryBag.Remove(itemToSell, 1);
@@ -145,7 +153,12 @@ public class PlayerInventory : MonoBehaviour
 
     private void Equip(Item item)
     {
-        inventoryBag.Remove(item);
-        inventoryEquip.Add(item.Data, item.Quantity);
+        if (item.Data is not ItemOutfit itemOutfit)
+            return;
+
+        Slot slotEquipment = inventoryEquip.FindSlot(itemOutfit.SlotId);
+
+        if (slotEquipment != null)
+            inventoryBag.Move(item.Slot, slotEquipment);
     }
 }
