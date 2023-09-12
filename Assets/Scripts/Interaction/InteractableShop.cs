@@ -5,7 +5,6 @@ public class InteractableShop : Interactable
 {
     [SerializeField] private Item[] itemsToSell;
     [SerializeField] private GameEvent gameEvent;
-    [SerializeField] private float minInteractDistance;
 
     private Inventory m_inventory;
 
@@ -19,12 +18,7 @@ public class InteractableShop : Interactable
 
     public override void Interact(Transform actor)
     {
-        if (actor == null)
-            return;
-
-        float distance = Vector2.Distance(actor.position, transform.position);
-
-        if (distance <= minInteractDistance)
+        if (CanInteract(actor))
             gameEvent.InventoryShow(m_inventory, true);
     }
 }
