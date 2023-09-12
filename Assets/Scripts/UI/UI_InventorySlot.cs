@@ -26,7 +26,16 @@ public class UI_InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         imageIcon.sprite = item?.Data.Icon;
         m_item = item;
 
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
         ShowQuantity();
+    }
+
+    public void Hide()
+    {
+        if (gameObject.activeSelf)
+            gameObject.SetActive(false);
     }
 
     private void ShowQuantity()

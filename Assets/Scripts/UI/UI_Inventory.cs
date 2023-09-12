@@ -62,13 +62,12 @@ public class UI_Inventory : MonoBehaviour
         if (!IsOpen)
             return;
 
-        if (HasToRecreateSlots(inventory))
+        if (inventory != m_inventory)
         {
             if (m_slots != null)
                 Clear();
 
-            int maxSize = showEmptySlots ? inventory.Capacity : inventory.Count;
-            m_slots = new UI_InventorySlot[maxSize];
+            m_slots = new UI_InventorySlot[inventory.Capacity];
 
             for (int i = 0; i < m_slots.Length; i++)
             {
@@ -81,10 +80,12 @@ public class UI_Inventory : MonoBehaviour
 
         for (int i = 0; i < m_slots.Length; i++)
         {
-            if (i < inventory.Count)
-                m_slots[i].Show(inventory.Items[i]);
+            Slot slot = inventory.Slots[i];
+
+            if (slot.IsEmpty && !showEmptySlots)
+                m_slots[i].Hide();
             else
-                m_slots[i].Show(null);
+                m_slots[i].Show(slot.Item);
         }
 
         m_inventory = inventory;
@@ -100,14 +101,6 @@ public class UI_Inventory : MonoBehaviour
         }
 
         m_slots = null;
-    }
-
-    private bool HasToRecreateSlots(Inventory inventory)
-    {
-        if (!showEmptySlots && m_slots != null && m_slots.Length != inventory.Count)
-            return true;
-
-        return inventory != m_inventory || m_slots == null;
     }
 
     public void SelectItem(UI_InventorySlot itemUI, GameEvent.ItemAction action)

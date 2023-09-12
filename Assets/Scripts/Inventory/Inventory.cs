@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -10,24 +10,31 @@ public class Inventory : MonoBehaviour
         Shop
     };
 
+    public Slot[] Slots;
+
     [SerializeField] private Type type;
-    [SerializeField] private int maxCapacity;
     [SerializeField] private GameEvent gameEvent;
 
-    [HideInInspector] public UI_Inventory InventoryUI;
+    public int Count
+    {
+        get
+        {
+            int count = 0;
 
-    public int Count => Items.Count;
-    public int Capacity => maxCapacity;
+            foreach (Slot slot in Slots)
+            {
+                if (!slot.IsEmpty)
+                    count++;
+            }
+
+            return count;
+        }
+    }
+    public int Capacity => Slots.Length;
     public bool IsOpen => InventoryUI != null && InventoryUI.IsOpen;
     public Type TypeId => type;
 
-    public readonly List<Item> Items = new();
-
-    public void Add(Item item)
-    {
-        if (item != null)
-            Add(item.Data, item.Quantity);
-    }
+    [HideInInspector] public UI_Inventory InventoryUI;
 
     public void Add(ItemData data, int quantity = 1)
     {
@@ -39,30 +46,67 @@ public class Inventory : MonoBehaviour
 
         if (data.IsStackable)
         {
-            Item existingItem = Items.Find(x => x.Data == data);
+            Item item = Find(data)?.Item;
 
-            if (existingItem != null)
+            if (item != null)
             {
-                existingItem.Quantity += quantity;
+                item.Quantity += quantity;
 
                 gameEvent.InventoryChanged(this);
                 return;
             }
         }
 
-        if (Count >= maxCapacity)
+        Slot emptySlot = FindEmptySlot();
+
+        if (emptySlot != null)
+        {
+            emptySlot.Item = new Item(data, emptySlot, quantity);
+            gameEvent.InventoryChanged(this);
+        }
+    }
+
+    public void Remove(Item item, int quantity = 1)
+    {
+        if (item == null)
             return;
 
-        Items.Add(new Item(data, quantity));
+        Slot slot = Find(item);
+
+        if (slot == null)
+            return;
+
+        slot.Item.Quantity -= quantity;
+
+        if (slot.Item.Quantity < 1)
+            slot.Item = null;
+
         gameEvent.InventoryChanged(this);
     }
 
-    public void Remove(Item item)
+    public void Move(Inventory toInventory, Item item)
     {
-        if (item != null)
+
+    }
+
+    public Slot Find(Item item)
+    {
+        return (item == null) ? null : Array.Find(Slots, x => x.Item == item);
+    }
+
+    public Slot Find(ItemData data)
+    {
+        return (data == null) ? null : Array.Find(Slots, x => x.Item?.Data == data);
+    }
+
+    public Slot FindEmptySlot()
+    {
+        foreach (var slot in Slots)
         {
-            Items.Remove(item);
-            gameEvent.InventoryChanged(this);
+            if (slot.IsEmpty)
+                return slot;
         }
+
+        return null;
     }
 }
