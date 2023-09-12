@@ -49,7 +49,7 @@ public class PlayerInventory : MonoBehaviour
     private void ToggleInventory()
     {
         gameEvent.InventoryShow(inventoryBag, !inventoryBag.IsOpen);
-        gameEvent.InventoryShow(inventoryEquip, !inventoryEquip.IsOpen);
+        gameEvent.InventoryShow(inventoryEquip, !inventoryEquip.IsOpen && m_inventoryShop == null);
     }
 
     private void CloseAllInventories()
@@ -126,19 +126,26 @@ public class PlayerInventory : MonoBehaviour
 
     private void Buy(Inventory shop, Item itemToBuy)
     {
-        shop.Remove(itemToBuy);
-        inventoryBag.Add(itemToBuy);
+        float price = itemToBuy.Data.Price;
+
+        if (Money < price)
+            return;
+
+        Money -= price;
+        shop.Remove(itemToBuy, 1);
+        inventoryBag.Add(itemToBuy.Data, 1);
     }
 
     private void Sell(Inventory shop, Item itemToSell)
     {
-        shop.Add(itemToSell);
-        inventoryBag.Remove(itemToSell);
+        Money += itemToSell.Data.Price;
+        shop.Add(itemToSell.Data, 1);
+        inventoryBag.Remove(itemToSell, 1);
     }
 
     private void Equip(Item item)
     {
-        if (item != null && item.Data is ItemOutfit itemOutfit)
-            m_skeleton2D.SetOutfit(itemOutfit.Clothes);
+        inventoryBag.Remove(item);
+        inventoryEquip.Add(item.Data, item.Quantity);
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: It's a hood
   Icon: {fileID: 21300000, guid: dcb72940063c94f44abc2366768e713a, type: 3}
   Price: 5
-  IsStackable: 1
+  IsStackable: 0
   Clothes:
   - Type: 16
     Sprite: {fileID: 21300000, guid: dcb72940063c94f44abc2366768e713a, type: 3}
