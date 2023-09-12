@@ -145,7 +145,10 @@ public class PlayerInventory : MonoBehaviour
         float price = itemToBuy.Data.Price;
 
         if (Money < price)
+        {
+            gameEvent.SendMessage("Not enough money!");
             return;
+        }
 
         Money -= price;
         shop.Remove(itemToBuy, 1);

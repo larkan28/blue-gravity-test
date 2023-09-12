@@ -936,6 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 8
   moneyAmount: 100
+  gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
 --- !u!1 &288540657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,7 +1751,7 @@ MonoBehaviour:
   m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
