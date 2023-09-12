@@ -10,9 +10,9 @@ public class UI_ShopSlot : UI_InventorySlot
         base.Init(manager);
     }
 
-    public override void Show(Item item)
+    public override void Show(Slot slot)
     {
-        base.Show(item);
-        textPrice.text = item?.Data.Price.ToString("$#.##");
+        base.Show(slot);
+        textPrice.text = slot.Item?.Data.Price.ToString("$#.##");
     }
 }

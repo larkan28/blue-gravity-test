@@ -63,20 +63,7 @@ public class UI_Inventory : MonoBehaviour
             return;
 
         if (inventory != m_inventory)
-        {
-            if (m_slots != null)
-                Clear();
-
-            m_slots = new UI_InventorySlot[inventory.Capacity];
-
-            for (int i = 0; i < m_slots.Length; i++)
-            {
-                m_slots[i] = Instantiate(slotPrefab, itemsContainer);
-
-                if (m_slots[i] != null)
-                    m_slots[i].Init(this);
-            }
-        }
+            CreateSlots(inventory.Capacity);
 
         for (int i = 0; i < m_slots.Length; i++)
         {
@@ -85,11 +72,27 @@ public class UI_Inventory : MonoBehaviour
             if (slot.IsEmpty && !showEmptySlots)
                 m_slots[i].Hide();
             else
-                m_slots[i].Show(slot.Item);
+                m_slots[i].Show(slot);
         }
 
         m_inventory = inventory;
         m_inventory.InventoryUI = this;
+    }
+
+    private void CreateSlots(int maxSlots)
+    {
+        if (m_slots != null)
+            Clear();
+
+        m_slots = new UI_InventorySlot[maxSlots];
+
+        for (int i = 0; i < m_slots.Length; i++)
+        {
+            m_slots[i] = Instantiate(slotPrefab, itemsContainer);
+
+            if (m_slots[i] != null)
+                m_slots[i].Init(this);
+        }
     }
 
     private void Clear()
@@ -106,7 +109,7 @@ public class UI_Inventory : MonoBehaviour
     public void SelectItem(UI_InventorySlot itemUI, GameEvent.ItemAction action)
     {
         if (itemUI != null)
-            gameEvent.ItemSelected(m_inventory, itemUI.Item, action);
+            gameEvent.SlotSelected(m_inventory, itemUI.Slot, action);
 
         Tooltip.Hide();
     }
