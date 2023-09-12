@@ -23,5 +23,8 @@ public class GameEvent : ScriptableObject
 
     public event Action<Inventory, Item, ItemAction> OnItemSelected;
     public void ItemSelected(Inventory inventory, Item item, ItemAction action) { OnItemSelected?.Invoke(inventory, item, action); }
+
+    public event Action<float> OnMoneyChanged;
+    public void MoneyChanged(float money) { OnMoneyChanged?.Invoke(money); }
     #endregion
 }
