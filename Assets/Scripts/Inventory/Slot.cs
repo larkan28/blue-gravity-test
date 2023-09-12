@@ -9,7 +9,8 @@ public class Slot
         Boots,
         Gloves,
         Chest,
-        Pelvis
+        Pelvis,
+        Weapon
     };
 
     public bool IsEmpty => (Item == null);
