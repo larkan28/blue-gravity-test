@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -24,12 +25,14 @@ public class PlayerInventory : MonoBehaviour
     {
         gameEvent.OnSlotSelected += OnSlotSelected;
         gameEvent.OnInventoryShow += OnInventoryShow;
+        gameEvent.OnInventoryChanged += OnInventoryChanged;
     }
 
     private void OnDisable()
     {
         gameEvent.OnSlotSelected -= OnSlotSelected;
         gameEvent.OnInventoryShow -= OnInventoryShow;
+        gameEvent.OnInventoryChanged -= OnInventoryChanged;
     }
 
     internal void Init()
@@ -59,6 +62,8 @@ public class PlayerInventory : MonoBehaviour
 
         if (m_inventoryShop)
             gameEvent.InventoryShow(m_inventoryShop, false);
+
+        m_inventoryShop = null;
     }
 
     private void OnSlotSelected(Inventory inventory, Slot slot, GameEvent.ItemAction action)
@@ -70,7 +75,7 @@ public class PlayerInventory : MonoBehaviour
 
         switch (action)
         {
-            case GameEvent.ItemAction.SelectRight:
+            case GameEvent.ItemAction.SelectRight: // Pressed right click
                 {
                     switch (inventory.TypeId)
                     {
@@ -87,7 +92,7 @@ public class PlayerInventory : MonoBehaviour
 
                     break;
                 }
-            case GameEvent.ItemAction.SelectLeft:
+            case GameEvent.ItemAction.SelectLeft: // Pressed left click
                 {
                     switch (inventory.TypeId)
                     {
@@ -110,20 +115,26 @@ public class PlayerInventory : MonoBehaviour
         if (inventory == null || inventory.TypeId != Inventory.Type.Shop)
             return;
 
-        if (show)
+        if (show) // Show bag when shop is oppened
         {
             m_inventoryShop = inventory;
 
             gameEvent.InventoryShow(inventoryBag, true);
             gameEvent.InventoryShow(inventoryEquip, false);
         }
-        else
+        else // Close everything when shop is closed
         {
             m_inventoryShop = null;
 
             gameEvent.InventoryShow(inventoryBag, false);
             gameEvent.InventoryShow(inventoryEquip, false);
         }
+    }
+
+    private void OnInventoryChanged(Inventory inventory)
+    {
+        if (inventory == inventoryEquip)
+            RefreshPlayerOutfit();
     }
 
     private void Buy(Inventory shop, Item itemToBuy)
@@ -160,5 +171,16 @@ public class PlayerInventory : MonoBehaviour
 
         if (slotEquipment != null)
             inventoryBag.Move(item.Slot, slotEquipment);
+    }
+
+    private void RefreshPlayerOutfit()
+    {
+        foreach (var slot in inventoryEquip.Slots)
+        {
+            Item item = slot.Item;
+
+            if (item != null && item.Data is ItemOutfit itemOutfit)
+                m_skeleton2D.SetOutfit(itemOutfit.Clothes);
+        }
     }
 }
