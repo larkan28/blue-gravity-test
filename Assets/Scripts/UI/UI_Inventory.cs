@@ -50,6 +50,8 @@ public class UI_Inventory : MonoBehaviour
             Show(show);
             Draw(inventory);
         }
+
+        Tooltip.Hide();
     }
 
     private void Show(bool value)
