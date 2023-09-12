@@ -13,7 +13,7 @@ public class UI_MessageManager : MonoBehaviour
 
     private void OnDisable()
     {
-        gameEvent.OnSendMessage += OnSendMessage;
+        gameEvent.OnSendMessage -= OnSendMessage;
     }
 
     public void OnSendMessage(string text)
