@@ -251,9 +251,11 @@ MonoBehaviour:
   itemsToSell:
   - Data: {fileID: 11400000, guid: 6d163c203d4b2cf458d7d0fa63d32c6a, type: 2}
     Quantity: 1
+  - Data: {fileID: 11400000, guid: 3abd4e5c63ede1f40a791f1c4c9d572d, type: 2}
+    Quantity: 1
   - Data: {fileID: 11400000, guid: 791a15f061f94fc4fa36a923533b74a3, type: 2}
     Quantity: 1
-  - Data: {fileID: 11400000, guid: 67bad3c1703f8dc40bd29027df98af1f, type: 2}
+  - Data: {fileID: 11400000, guid: d84a54d094cdd0040b6e08d1d5db3288, type: 2}
     Quantity: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
   minInteractDistance: 8
