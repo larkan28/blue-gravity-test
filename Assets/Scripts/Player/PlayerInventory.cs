@@ -6,6 +6,17 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Inventory inventoryBag;
     [SerializeField] private Inventory inventoryEquip;
 
+    public float Money
+    {
+        get => m_playerMoney;
+        set
+        {
+            m_playerMoney = value;
+            gameEvent.MoneyChanged(m_playerMoney);
+        }
+    }
+
+    private float m_playerMoney;
     private Inventory m_inventoryShop;
     private Skeleton2D m_skeleton2D;
 
