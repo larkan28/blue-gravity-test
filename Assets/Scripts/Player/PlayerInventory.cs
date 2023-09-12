@@ -30,12 +30,24 @@ public class PlayerInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
             ToggleInventory();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            CloseAllInventories();
     }
 
     private void ToggleInventory()
     {
         gameEvent.InventoryShow(inventoryBag, !inventoryBag.IsOpen);
         gameEvent.InventoryShow(inventoryEquip, !inventoryEquip.IsOpen);
+    }
+
+    private void CloseAllInventories()
+    {
+        gameEvent.InventoryShow(inventoryBag, false);
+        gameEvent.InventoryShow(inventoryEquip, false);
+
+        if (m_inventoryShop)
+            gameEvent.InventoryShow(m_inventoryShop, false);
     }
 
     private void OnItemSelected(Inventory inventory, Item item, GameEvent.ItemAction action)
