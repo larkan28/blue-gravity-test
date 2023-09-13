@@ -10,6 +10,13 @@ public class Inventory : MonoBehaviour
         Shop
     };
 
+    public enum ErrorCode : int
+    {
+        Ok,
+        Full,
+        Invalid
+    }
+
     public Slot[] Slots;
 
     [SerializeField] private Type type;
@@ -42,10 +49,10 @@ public class Inventory : MonoBehaviour
             slot.Parent = this;
     }
 
-    public void Add(ItemData data, int quantity = 1)
+    public ErrorCode Add(ItemData data, int quantity = 1)
     {
         if (data == null)
-            return;
+            return ErrorCode.Invalid;
 
         if (quantity < 1)
             quantity = 1;
@@ -59,17 +66,19 @@ public class Inventory : MonoBehaviour
                 item.Quantity += quantity;
 
                 gameEvent.InventoryChanged(this);
-                return;
+                return ErrorCode.Ok;
             }
         }
 
         Slot emptySlot = FindEmptySlot();
 
-        if (emptySlot != null)
-        {
-            emptySlot.Item = new Item(data, emptySlot, quantity);
-            gameEvent.InventoryChanged(this);
-        }
+        if (emptySlot == null)
+            return ErrorCode.Full;
+
+        emptySlot.Item = new Item(data, emptySlot, quantity);
+        gameEvent.InventoryChanged(this);
+
+        return ErrorCode.Ok;
     }
 
     public void Remove(Item item, int quantity = 1)
