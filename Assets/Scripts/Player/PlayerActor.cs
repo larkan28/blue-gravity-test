@@ -22,6 +22,7 @@ public class PlayerActor : MonoBehaviour
 
     private void FixedUpdate()
     {
+        playerInteraction.ThinkFixed();
         playerController.ThinkFixed();
     }
 }

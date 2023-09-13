@@ -29,5 +29,8 @@ public class GameEvent : ScriptableObject
 
     public event Action<string> OnSendMessage;
     public void SendMessage(string text) { OnSendMessage?.Invoke(text); }
+
+    public event Action<Interactable> OnShowInteraction;
+    public void ShowInteraction(Interactable interaction) { OnShowInteraction?.Invoke(interaction); }
     #endregion
 }
