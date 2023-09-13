@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Gloves 1
   Description: Very cool gloves
   Icon: {fileID: 21300000, guid: ab82998e392efb84a9b53889d16b4f28, type: 3}
-  Price: 5
+  Price: 8
   IsStackable: 0
   Clothes:
   - Type: 0

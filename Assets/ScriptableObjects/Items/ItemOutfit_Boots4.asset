@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Boots 4
   Description: Cool boots
   Icon: {fileID: 21300000, guid: 7da65aca273926f448cfc7947325ce65, type: 3}
-  Price: 5
+  Price: 10
   IsStackable: 0
   Clothes:
   - Type: 12

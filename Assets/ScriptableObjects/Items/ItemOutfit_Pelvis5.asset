@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Pelvis 5
   Description: It's a cool belt
   Icon: {fileID: 21300000, guid: f5e38fc0746afdb408f3af29c6c737cc, type: 3}
-  Price: 5
+  Price: 15
   IsStackable: 0
   Clothes:
   - Type: 9

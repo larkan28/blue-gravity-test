@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Armor 5
   Description: It's a cool armor
   Icon: {fileID: 21300000, guid: fff248787aa9dc44d819b77a6686c0af, type: 3}
-  Price: 5
+  Price: 20
   IsStackable: 0
   Clothes:
   - Type: 8
