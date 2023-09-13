@@ -54,7 +54,7 @@ public class UI_Inventory : MonoBehaviour
         Tooltip.Hide();
     }
 
-    private void Show(bool value)
+    public void Show(bool value)
     {
         invetoryRoot.SetActive(value);
     }
