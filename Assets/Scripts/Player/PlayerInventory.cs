@@ -5,6 +5,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private GameEvent gameEvent;
     [SerializeField] private Inventory inventoryBag;
     [SerializeField] private Inventory inventoryEquip;
+    [SerializeField] private AudioClip soundBuy;
+    [SerializeField] private AudioClip soundEquip;
+    [SerializeField] private AudioClip soundError;
+    [SerializeField] private AudioClip soundOpenInventory;
 
     public float Money
     {
@@ -17,6 +21,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private float m_playerMoney;
+    private GameSound m_gameSound;
     private Inventory m_inventoryShop;
     private Skeleton2D m_skeleton2D;
     private Interactable m_shopInteraction;
@@ -37,6 +42,7 @@ public class PlayerInventory : MonoBehaviour
 
     internal void Init()
     {
+        m_gameSound = GameSound.Instance;
         m_skeleton2D = GetComponent<Skeleton2D>();
     }
 
@@ -49,17 +55,22 @@ public class PlayerInventory : MonoBehaviour
             CloseAllInventories();
 
         if (m_shopInteraction != null && !m_shopInteraction.CanInteract(transform))
-            CloseAllInventories();
+            CloseAllInventories(true);
     }
 
     private void ToggleInventory()
     {
         gameEvent.InventoryShow(inventoryBag, !inventoryBag.IsOpen);
         gameEvent.InventoryShow(inventoryEquip, !inventoryEquip.IsOpen && m_inventoryShop == null);
+
+        m_gameSound.Play(soundOpenInventory);
     }
 
-    private void CloseAllInventories()
+    private void CloseAllInventories(bool forced = false)
     {
+        if (!forced)
+            m_gameSound.Play(soundOpenInventory);
+
         gameEvent.InventoryShow(inventoryBag, false);
         gameEvent.InventoryShow(inventoryEquip, false);
 
@@ -151,13 +162,21 @@ public class PlayerInventory : MonoBehaviour
 
         if (Money < price)
         {
-            gameEvent.SendMessage("Not enough money!");
+            NotEnoughMoney();
             return;
         }
 
         Money -= price;
         shop.Remove(itemToBuy, 1);
         inventoryBag.Add(itemToBuy.Data, 1);
+        gameEvent.SendMessage($"You bought '{itemToBuy.Data.Name}' (-${price})");
+        m_gameSound.Play(soundBuy);
+    }
+
+    private void NotEnoughMoney()
+    {
+        gameEvent.SendMessage("Not enough money!");
+        m_gameSound.Play(soundError);
     }
 
     private void Sell(Inventory shop, Item itemToSell)
@@ -165,9 +184,13 @@ public class PlayerInventory : MonoBehaviour
         if (shop == null || !shop.IsOpen || itemToSell == null)
             return;
 
-        Money += itemToSell.Data.Price;
+        float price = itemToSell.Data.Price;
+        Money += price;
+
         shop.Add(itemToSell.Data, 1);
         inventoryBag.Remove(itemToSell, 1);
+        gameEvent.SendMessage($"You have sold '{itemToSell.Data.Name}' (+${price})");
+        m_gameSound.Play(soundBuy);
     }
 
     private void Equip(Item item)
@@ -178,7 +201,10 @@ public class PlayerInventory : MonoBehaviour
         Slot slotEquipment = inventoryEquip.FindSlot(itemOutfit.SlotId);
 
         if (slotEquipment != null)
+        {
             inventoryBag.Move(item.Slot, slotEquipment);
+            m_gameSound.Play(soundEquip);
+        }
     }
 
     private void RefreshPlayerOutfit()

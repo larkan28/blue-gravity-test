@@ -5,6 +5,7 @@ public class InteractableBank : Interactable
     [SerializeField] private float moneyAmount;
     [SerializeField] private GameEvent gameEvent;
     [SerializeField] private GameObject arrowPointing;
+    [SerializeField] private AudioClip soundMoney;
 
     public override void Interact(Transform actor)
     {
@@ -18,6 +19,8 @@ public class InteractableBank : Interactable
 
             if (arrowPointing.activeSelf)
                 arrowPointing.SetActive(false);
+
+            GameSound.Instance.Play(soundMoney);
         }
     }
 }

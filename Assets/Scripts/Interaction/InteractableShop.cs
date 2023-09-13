@@ -5,6 +5,7 @@ public class InteractableShop : Interactable
 {
     [SerializeField] private ItemTemplate[] itemsToSell;
     [SerializeField] private GameEvent gameEvent;
+    [SerializeField] private AudioClip soundInteract;
 
     private Inventory m_inventory;
 
@@ -19,7 +20,10 @@ public class InteractableShop : Interactable
     public override void Interact(Transform actor)
     {
         if (CanInteract(actor))
+        {
             gameEvent.InventoryShow(m_inventory, true);
+            GameSound.Instance.Play(soundInteract);
+        }
     }
 }
 

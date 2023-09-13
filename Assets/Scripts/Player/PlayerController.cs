@@ -3,10 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private AudioClip[] soundFootstep;
 
     private bool m_isFacingLeft;
     private Vector2 m_moveDir;
     private Animator m_animator;
+    private GameSound m_gameSound;
     private Rigidbody2D m_rigidbody2D;
 
     private readonly static int k_animSpeed = Animator.StringToHash("Speed");
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour
     internal void Init()
     {
         m_animator = GetComponent<Animator>();
+        m_gameSound = GameSound.Instance;
         m_rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -23,7 +26,7 @@ public class PlayerController : MonoBehaviour
         float verAxis = Input.GetAxisRaw("Vertical");
 
         m_moveDir = new(horAxis, verAxis);
-        m_animator.SetFloat(k_animSpeed, m_moveDir.sqrMagnitude * moveSpeed);
+        m_animator.SetFloat(k_animSpeed, m_rigidbody2D.velocity.magnitude);
 
         Rotate();
     }
@@ -55,5 +58,10 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.zero);
             m_isFacingLeft = false;
         }
+    }
+
+    public void EventFootstep()
+    {
+        m_gameSound.Play(soundFootstep[Random.Range(0, soundFootstep.Length)], 0.5f);
     }
 }
