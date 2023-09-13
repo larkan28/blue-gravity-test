@@ -144,7 +144,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Buy(Inventory shop, Item itemToBuy)
     {
-        if (itemToBuy == null)
+        if (shop == null || !shop.IsOpen || itemToBuy == null)
             return;
 
         float price = itemToBuy.Data.Price;
@@ -162,7 +162,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Sell(Inventory shop, Item itemToSell)
     {
-        if (itemToSell == null)
+        if (shop == null || !shop.IsOpen || itemToSell == null)
             return;
 
         Money += itemToSell.Data.Price;
@@ -172,7 +172,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Equip(Item item)
     {
-        if (item.Data is not ItemOutfit itemOutfit)
+        if (!inventoryEquip.IsOpen || item == null || item.Data is not ItemOutfit itemOutfit)
             return;
 
         Slot slotEquipment = inventoryEquip.FindSlot(itemOutfit.SlotId);
