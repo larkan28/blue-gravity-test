@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class UI_Interaction : MonoBehaviour
 
     private void OnDisable()
     {
-        gameEvent.OnShowInteraction += OnShowInteraction;
+        gameEvent.OnShowInteraction -= OnShowInteraction;
     }
 
     private void Awake()
