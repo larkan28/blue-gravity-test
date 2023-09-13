@@ -162,20 +162,27 @@ public class PlayerInventory : MonoBehaviour
 
         if (Money < price)
         {
-            NotEnoughMoney();
+            ErrorMessage("Not enough money!");
+            return;
+        }
+
+        Inventory.ErrorCode result = inventoryBag.Add(itemToBuy.Data, 1);
+
+        if (result == Inventory.ErrorCode.Full)
+        {
+            ErrorMessage("Your inventory is full");
             return;
         }
 
         Money -= price;
         shop.Remove(itemToBuy, 1);
-        inventoryBag.Add(itemToBuy.Data, 1);
         gameEvent.SendMessage($"You bought '{itemToBuy.Data.Name}' (-${price})");
         m_gameSound.Play(soundBuy);
     }
 
-    private void NotEnoughMoney()
+    private void ErrorMessage(string error)
     {
-        gameEvent.SendMessage("Not enough money!");
+        gameEvent.SendMessage(error);
         m_gameSound.Play(soundError);
     }
 
@@ -184,10 +191,17 @@ public class PlayerInventory : MonoBehaviour
         if (shop == null || !shop.IsOpen || itemToSell == null)
             return;
 
+        Inventory.ErrorCode result = shop.Add(itemToSell.Data, 1);
+
+        if (result == Inventory.ErrorCode.Full)
+        {
+            ErrorMessage("Shopkeeper inventory is full");
+            return;
+        }
+
         float price = itemToSell.Data.Price;
         Money += price;
 
-        shop.Add(itemToSell.Data, 1);
         inventoryBag.Remove(itemToSell, 1);
         gameEvent.SendMessage($"You have sold '{itemToSell.Data.Name}' (+${price})");
         m_gameSound.Play(soundBuy);
