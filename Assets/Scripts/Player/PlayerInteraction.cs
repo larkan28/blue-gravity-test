@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -6,11 +7,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameEvent gameEvent;
 
     private Camera m_mainCamera;
+    private EventSystem m_eventSystem;
     private Interactable m_lastInteraction;
 
     internal void Init()
     {
         m_mainCamera = Camera.main;
+        m_eventSystem = EventSystem.current;
     }
 
     internal void Think()
@@ -44,6 +47,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private Interactable GetInteraction()
     {
+        if (m_eventSystem.IsPointerOverGameObject())
+            return null;
+
         Vector2 origin = m_mainCamera.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, layerInteraction);
 
