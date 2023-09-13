@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMessage: {fileID: 8027743384202830214}
-  duration: 2
+  duration: 3
 --- !u!1 &8027743384202830208
 GameObject:
   m_ObjectHideFlags: 0
