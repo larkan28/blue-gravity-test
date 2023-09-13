@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Belt 5
   Description: It's a cool belt
-  Icon: {fileID: 434574665, guid: 54d9c29c2e3aac04a856738feb0f0c0e, type: 3}
+  Icon: {fileID: -873910586, guid: 64a85c5035726df4a9760a233c4ee0de, type: 3}
   Price: 15
   IsStackable: 0
   Clothes:
