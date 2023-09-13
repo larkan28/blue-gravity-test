@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bbc9b5460832a42a479d8b98d5ec36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
+  minDistance: 3
   textInteraction: Shop - Gloves
   itemsToSell:
   - Data: {fileID: 11400000, guid: 315a26f8d75cb004a8958be53c19b603, type: 2}
@@ -217,6 +217,7 @@ MonoBehaviour:
   - Data: {fileID: 11400000, guid: 21b5476ab204fa54d91df57c3fa48d78, type: 2}
     Quantity: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
+  soundInteract: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
 --- !u!212 &80043267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bbc9b5460832a42a479d8b98d5ec36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
+  minDistance: 3
   textInteraction: Shop - Hoods/Faces
   itemsToSell:
   - Data: {fileID: 11400000, guid: 6d163c203d4b2cf458d7d0fa63d32c6a, type: 2}
@@ -424,9 +425,8 @@ MonoBehaviour:
     Quantity: 1
   - Data: {fileID: 11400000, guid: d22eab1d5ddbd294596e0c566c8edecc, type: 2}
     Quantity: 1
-  - Data: {fileID: 11400000, guid: d22eab1d5ddbd294596e0c566c8edecc, type: 2}
-    Quantity: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
+  soundInteract: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
 --- !u!114 &117303213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,11 +1052,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d1e6db888770344a5466b9b1da0105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
+  minDistance: 3
   textInteraction: Bank - Free money
   moneyAmount: 100
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
   arrowPointing: {fileID: 538048418}
+  soundMoney: {fileID: 8300000, guid: c65cf3f97f328774d99781e0207bc576, type: 3}
 --- !u!1 &288540657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1243,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 492023111}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2d51c482fe0e7164ab01171ea97d8f9c, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &394047769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,6 +1389,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 492023111}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2d51c482fe0e7164ab01171ea97d8f9c, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &463323875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,6 +1451,7 @@ GameObject:
   - component: {fileID: 492023109}
   - component: {fileID: 492023108}
   - component: {fileID: 492023107}
+  - component: {fileID: 492023111}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1519,6 +1545,102 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!82 &492023111
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492023106}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &503628628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,7 +2252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bbc9b5460832a42a479d8b98d5ec36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
+  minDistance: 3
   textInteraction: Shop - Armors
   itemsToSell:
   - Data: {fileID: 11400000, guid: 4c90b9816cb952b4b8cd1b3a3f5ff5b6, type: 2}
@@ -2146,6 +2268,7 @@ MonoBehaviour:
   - Data: {fileID: 11400000, guid: f857d68e1a4a77a429f4fb9a4df388ce, type: 2}
     Quantity: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
+  soundInteract: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
 --- !u!212 &573377766
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6278,6 +6401,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 492023111}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2d51c482fe0e7164ab01171ea97d8f9c, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &886936815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7176,7 +7311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bbc9b5460832a42a479d8b98d5ec36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
+  minDistance: 3
   textInteraction: Shop - Belts
   itemsToSell:
   - Data: {fileID: 11400000, guid: f13b11cd0555e654fa8ea92fc574aec9, type: 2}
@@ -7192,6 +7327,7 @@ MonoBehaviour:
   - Data: {fileID: 11400000, guid: 3df3366444f5b70458c0d11e26fa2aad, type: 2}
     Quantity: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
+  soundInteract: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
 --- !u!212 &1351687512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20773,7 +20909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bbc9b5460832a42a479d8b98d5ec36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
+  minDistance: 3
   textInteraction: Shop - Boots
   itemsToSell:
   - Data: {fileID: 11400000, guid: 66389205a0836874ab75c5ada1cace77, type: 2}
@@ -20787,6 +20923,7 @@ MonoBehaviour:
   - Data: {fileID: 11400000, guid: 49b85fcaf9c57644abdc2a529a3a794e, type: 2}
     Quantity: 1
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
+  soundInteract: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494, type: 3}
 --- !u!212 &1882245845
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22745,6 +22882,10 @@ MonoBehaviour:
   gameEvent: {fileID: 11400000, guid: 3b2b8555cca1ce646bfc2a0df09f306f, type: 2}
   inventoryBag: {fileID: 153307599}
   inventoryEquip: {fileID: 876036595}
+  soundBuy: {fileID: 8300000, guid: cc9043e9f8e8a924ba98acc0ef0aee1b, type: 3}
+  soundEquip: {fileID: 8300000, guid: dd174e0496f54cd408f3f5082cdd127b, type: 3}
+  soundError: {fileID: 8300000, guid: c140823ffd3009147869b4beab5f568f, type: 3}
+  soundOpenInventory: {fileID: 8300000, guid: 9ea1622ba46b534448e6f38d77e43f10, type: 3}
 --- !u!114 &95000012754429310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22774,6 +22915,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  soundFootstep:
+  - {fileID: 8300000, guid: 0ab87623284a7524b8903232d465e1a8, type: 3}
+  - {fileID: 8300000, guid: 33dfb8b795e551c4eb52ba9e370ffe36, type: 3}
+  - {fileID: 8300000, guid: 8d2e9fcc7ed00a34d8a48fa64827ea5c, type: 3}
+  - {fileID: 8300000, guid: a8fcfb58ced8df64484a303e456c20c7, type: 3}
 --- !u!70 &95000012754429312
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f68fed30ebbb974eb5952344cd2de79
+guid: 454e2ad8ba26b634294d3877afe2db06
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 265, y: 0, z: 300, w: 750}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boots_02_0
+      name: torso_03_0
       rect:
         serializedVersion: 2
-        x: 284
-        y: 0
-        width: 413
-        height: 269
+        x: 303
+        y: 195
+        width: 379
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91275754fb249444194966181c4a803f
-      internalID: 24844038
+      spriteID: 4f7db1a64ff60054989a7c72beac7c24
+      internalID: -13684114
       vertices: []
       indices: 
       edges: []
@@ -128,15 +128,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boots_02_0: 24844038
-      boots_02_1: 577935309
+      torso_03_0: -13684114
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

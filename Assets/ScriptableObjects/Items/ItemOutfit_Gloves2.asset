@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Gloves 2
   Description: Very cool gloves
-  Icon: {fileID: 21300000, guid: e7a06f7f4502672489353012200bea53, type: 3}
+  Icon: {fileID: -1354349591, guid: e7a06f7f4502672489353012200bea53, type: 3}
   Price: 8
   IsStackable: 0
   Clothes:

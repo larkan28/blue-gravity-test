@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Armor 1
   Description: It's a cool armor
-  Icon: {fileID: 21300000, guid: 215dd6c48c732d744aecd29e7fecbbfa, type: 3}
+  Icon: {fileID: 755827684, guid: e3fe5c827c0aeac42a968c1916b6021b, type: 3}
   Price: 20
   IsStackable: 0
   Clothes:

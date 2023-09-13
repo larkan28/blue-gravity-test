@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0da2eeea084ec4098cad6e1580a001, type: 3}
   m_Name: ItemOutfit_Pelvis3
   m_EditorClassIdentifier: 
-  Name: Pelvis 3
+  Name: Belt 3
   Description: It's a cool belt
-  Icon: {fileID: 21300000, guid: 0c6412d95175c2b40bd9a27f7d1fa096, type: 3}
+  Icon: {fileID: -2010058429, guid: 47b8d29c35aa75e4792c1d34fdda4fd2, type: 3}
   Price: 15
   IsStackable: 0
   Clothes:

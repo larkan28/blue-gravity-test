@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Angry face
   Icon: {fileID: 21300000, guid: 7db7af78e8f9c45418a407bdd7958560, type: 3}
   Price: 5
-  IsStackable: 1
+  IsStackable: 0
   Clothes:
   - Type: 15
     Sprite: {fileID: 21300000, guid: 7db7af78e8f9c45418a407bdd7958560, type: 3}

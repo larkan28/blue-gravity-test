@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Boots 5
   Description: Cool boots
-  Icon: {fileID: 21300000, guid: 0a863d6a26b87d146a4ce2b44fa48a95, type: 3}
+  Icon: {fileID: 648548074, guid: 0a863d6a26b87d146a4ce2b44fa48a95, type: 3}
   Price: 10
   IsStackable: 0
   Clothes:
