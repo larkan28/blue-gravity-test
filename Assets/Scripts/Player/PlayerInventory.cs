@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -20,6 +19,7 @@ public class PlayerInventory : MonoBehaviour
     private float m_playerMoney;
     private Inventory m_inventoryShop;
     private Skeleton2D m_skeleton2D;
+    private Interactable m_shopInteraction;
 
     private void OnEnable()
     {
@@ -46,6 +46,9 @@ public class PlayerInventory : MonoBehaviour
             ToggleInventory();
 
         if (Input.GetKeyDown(KeyCode.Escape))
+            CloseAllInventories();
+
+        if (m_shopInteraction != null && !m_shopInteraction.CanInteract(transform))
             CloseAllInventories();
     }
 
@@ -118,6 +121,7 @@ public class PlayerInventory : MonoBehaviour
         if (show) // Show bag when shop is oppened
         {
             m_inventoryShop = inventory;
+            m_shopInteraction = m_inventoryShop.GetComponent<Interactable>();
 
             gameEvent.InventoryShow(inventoryBag, true);
             gameEvent.InventoryShow(inventoryEquip, false);
@@ -125,6 +129,7 @@ public class PlayerInventory : MonoBehaviour
         else // Close everything when shop is closed
         {
             m_inventoryShop = null;
+            m_shopInteraction = null;
 
             gameEvent.InventoryShow(inventoryBag, false);
             gameEvent.InventoryShow(inventoryEquip, false);
