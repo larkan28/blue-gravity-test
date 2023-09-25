@@ -68,13 +68,13 @@ public class PlayerInventory : MonoBehaviour
 
     private void CloseAllInventories(bool forced = false)
     {
-        if (!forced)
+        if (!forced && (inventoryBag.IsOpen || inventoryEquip.IsOpen))
             m_gameSound.Play(soundOpenInventory);
 
         gameEvent.InventoryShow(inventoryBag, false);
         gameEvent.InventoryShow(inventoryEquip, false);
 
-        if (m_inventoryShop)
+        if (m_inventoryShop != null)
             gameEvent.InventoryShow(m_inventoryShop, false);
 
         m_inventoryShop = null;
